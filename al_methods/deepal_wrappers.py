@@ -99,7 +99,7 @@ def select_indices(
     strategy_cls = STRATEGY_REGISTRY[strategy]
     strategy_obj = strategy_cls(dataset, net)
 
-    if train_before_query:
+    if train_before_query and strategy not in _RANDOM_ONLY:
         strategy_obj.train()
 
     selected = _to_int_list(strategy_obj.query(n_query))
@@ -232,12 +232,19 @@ def adversarial_deepfool(
     )
 
 
-def typiclust(dataset, budget: int, embeddings_npz_path: str = None, k: int = 20) -> tuple[list[int], list[int]]:
+def typiclust(
+    dataset,
+    budget: int,
+    embeddings_npz_path: str = None,
+    k: int = 20,
+    random_state: int | None = 42,
+) -> tuple[list[int], list[int]]:
     return typiclust_algo(
         dataset=dataset,
         budget=budget,
         embeddings_npz_path=embeddings_npz_path,
-        k=k
+        k=k,
+        random_state=random_state,
     )
 
 

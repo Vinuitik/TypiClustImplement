@@ -13,6 +13,7 @@ from .deepal_wrappers import (
     margin_dropout,
     random,
     select_indices,
+    typiclust
 )
 
 __all__ = [

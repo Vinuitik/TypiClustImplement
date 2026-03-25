@@ -7,7 +7,13 @@ def _load_embeddings(path: str) -> np.ndarray:
     data = np.load(path)
     return data[data.files[0]]
 
-def typiclust(dataset, budget: int, embeddings_npz_path: str = None, k: int = 20) -> tuple[list[int], list[int]]:
+def typiclust(
+    dataset,
+    budget: int,
+    embeddings_npz_path: str = None,
+    k: int = 20,
+    random_state: int | None = 42,
+) -> tuple[list[int], list[int]]:
     """
     Selects points using the TypiClust algorithm.
     """
@@ -22,7 +28,7 @@ def typiclust(dataset, budget: int, embeddings_npz_path: str = None, k: int = 20
     n_samples = unlabeled_embeddings.shape[0]
 
     # Cluster the embeddings into `budget` clusters
-    kmeans = KMeans(n_clusters=budget, random_state=42, n_init='auto')
+    kmeans = KMeans(n_clusters=budget, random_state=random_state, n_init='auto')
     cluster_labels = kmeans.fit_predict(unlabeled_embeddings)
 
     labeled_indexes = []

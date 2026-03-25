@@ -29,7 +29,7 @@ from utils import get_net  # type: ignore  # noqa: E402
 
 
 DEFAULT_BUDGETS = [10, 20, 30, 40, 50, 60, 100, 150, 200, 250, 300]
-DEFAULT_METHODS = sorted(list(STRATEGY_REGISTRY.keys())) + ["typiclust", "typiclust_rp"]
+DEFAULT_METHODS = sorted(list(STRATEGY_REGISTRY.keys())) + ["typiclust"]
 
 
 def _sorted_unique_ints(values: list[int]) -> list[int]:
@@ -68,7 +68,7 @@ def _run_single_method(
 	unlabeled_indices = np.arange(dataset.n_pool)[~dataset.labeled_idxs].astype(np.int64).tolist()
 
 	active_scores = None
-	if method in {"typiclust", "typiclust_rp"} and typicality_npz_path is not None:
+	if method in {"typiclust"} and typicality_npz_path is not None:
 		with np.load(typicality_npz_path) as pack:
 			if "typicality" in pack:
 				active_scores = np.asarray(pack["typicality"], dtype=np.float32).copy()
@@ -107,26 +107,6 @@ def _run_single_method(
 				labeled_indices = np.arange(dataset.n_pool)[dataset.labeled_idxs].astype(np.int64).tolist()
 
 
-			elif method == "typiclust_rp":
-				anchors, after_anchor = typiclust_precomputed(
-					labeled_indices=labeled_indices,
-					unlabeled_indices=unlabeled_indices,
-					budget=increment,
-					embeddings_npz_path=embeddings_npz_path,
-					typicality_npz_path=typicality_npz_path,
-					suppress_k=suppress_k,
-					decay_factor=decay_factor,
-					random_state=seed + target_budget,
-					active_scores=active_scores,
-				)
-				propagated, after_prop = typiclust_propagation(
-					anchor_indices=anchors,
-					unlabeled_indices=after_anchor,
-					prop_k=prop_k,
-					typicality_npz_path=typicality_npz_path,
-				)
-				labeled_indices = _sorted_unique_ints(labeled_indices + anchors + propagated)
-				unlabeled_indices = after_prop
 			elif method == "typiclust":
 				selected, remaining = typiclust(
 					dataset=dataset,
@@ -218,7 +198,7 @@ def _parse_args() -> argparse.Namespace:
 		type=str,
 		nargs="*",
 		default=DEFAULT_METHODS,
-		help="Method names to run. Supports DeepAL registry keys + typiclust + typiclust_rp.",
+		help="Method names to run. Supports DeepAL registry keys + typiclust.",
 	)
 	parser.add_argument("--seed", type=int, default=42)
 	parser.add_argument("--train-before-query", action="store_true", default=True)
