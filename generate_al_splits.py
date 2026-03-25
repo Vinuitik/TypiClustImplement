@@ -30,6 +30,7 @@ from al_methods import STRATEGY_REGISTRY, select_indices, typiclust
 
 BUDGETS = [10, 20, 30, 40, 50, 60, 100, 150, 200, 250, 300]
 METHODS = sorted(STRATEGY_REGISTRY.keys()) + ["typiclust"]
+N_CLASSES = 10  # CIFAR-10
 EMBEDDINGS_PATH = str(_ROOT / "datasets" / "cifar10_train_embeddings.npz")
 OUTPUT_DIR = _ROOT / "datasets" / "al_splits"
 SEED = 42
@@ -48,7 +49,18 @@ def _run_method(method: str) -> None:
         torch.cuda.manual_seed_all(SEED)
 
     dataset = get_CIFAR10(CIFAR10_Handler)
-    dataset.initialize_labels(budgets[0])
+
+    if method == "typiclust":
+        # typiclust uses embeddings only — can select from a fully unlabeled pool
+        pass
+    else:
+        # Stratified init: 1 sample per class — guarantees all classes present
+        # (DeepAL strategies need a trainable labeled set before the first query)
+        y = dataset.Y_train.numpy()
+        for cls in range(N_CLASSES):
+            cls_idxs = np.where(y == cls)[0]
+            chosen = np.random.choice(cls_idxs, 1, replace=False)
+            dataset.labeled_idxs[chosen] = True
 
     labeled = np.where(dataset.labeled_idxs)[0].tolist()
     unlabeled = np.where(~dataset.labeled_idxs)[0].tolist()
