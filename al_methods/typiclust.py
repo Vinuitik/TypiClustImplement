@@ -1,6 +1,11 @@
 import numpy as np
 from sklearn.cluster import KMeans
-from .typiclust_precomputed import _load_embeddings
+
+def _load_embeddings(path: str) -> np.ndarray:
+    if not path:
+        raise ValueError("embeddings_npz_path is required for typiclust")
+    data = np.load(path)
+    return data[data.files[0]]
 
 def typiclust(dataset, budget: int, embeddings_npz_path: str = None, k: int = 20) -> tuple[list[int], list[int]]:
     """
