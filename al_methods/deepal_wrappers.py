@@ -10,8 +10,6 @@ if str(_DEEPAL_DIR) not in sys.path:
     sys.path.insert(0, str(_DEEPAL_DIR))
 
 from query_strategies import (  # type: ignore  # noqa: E402
-    AdversarialBIM,
-    AdversarialDeepFool,
     BALDDropout,
     EntropySampling,
     EntropySamplingDropout,
@@ -37,8 +35,6 @@ STRATEGY_REGISTRY = {
     "kmeans": KMeansSampling,
     "kcenter": KCenterGreedy,
     "bald_dropout": BALDDropout,
-    "adversarial_bim": AdversarialBIM,
-    "adversarial_deepfool": AdversarialDeepFool,
 }
 
 _RANDOM_ONLY = {"random"}

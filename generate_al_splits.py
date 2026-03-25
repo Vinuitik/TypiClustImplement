@@ -1,6 +1,15 @@
+"""
+Generate labeled/unlabeled index splits for each (method, budget) pair
+and save them as individual JSON files in datasets/al_splits/.
+
+Output: datasets/al_splits/{method}_{budget}.json
+Format: {"labeled_indices": [...], "unlabeled_indices": [...]}
+
+Budgets are cumulative: random_20.json includes the same 10 indices as
+random_10.json plus 10 more selected by the strategy.
+"""
 from __future__ import annotations
 
-import argparse
 import json
 import sys
 from pathlib import Path
@@ -8,145 +17,93 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from al_methods import STRATEGY_REGISTRY, select_indices, typiclust
-
-
-_DEEPAL_DIR = Path(__file__).resolve().parent / "deep-active-learning"
+_ROOT = Path(__file__).resolve().parent
+_DEEPAL_DIR = _ROOT / "deep-active-learning"
 if str(_DEEPAL_DIR) not in sys.path:
     sys.path.insert(0, str(_DEEPAL_DIR))
 
-from data import Data, get_CIFAR10  # type: ignore  # noqa: E402
-from handlers import CIFAR10_Handler  # type: ignore  # noqa: E402
-from utils import get_net  # type: ignore  # noqa: E402
+from data import get_CIFAR10          # type: ignore
+from handlers import CIFAR10_Handler  # type: ignore
+from utils import get_net             # type: ignore
+
+from al_methods import STRATEGY_REGISTRY, select_indices, typiclust
+
+BUDGETS = [10, 20, 30, 40, 50, 60, 100, 150, 200, 250, 300]
+METHODS = sorted(STRATEGY_REGISTRY.keys()) + ["typiclust"]
+EMBEDDINGS_PATH = str(_ROOT / "datasets" / "cifar10_train_embeddings.npz")
+OUTPUT_DIR = _ROOT / "datasets" / "al_splits"
+SEED = 42
 
 
-DEFAULT_BUDGETS = [10, 20, 30, 40, 50, 60, 100, 150, 200, 250, 300]
-DEFAULT_METHODS = sorted(list(STRATEGY_REGISTRY.keys())) + ["typiclust"]
+def _sorted_ints(values) -> list[int]:
+    return sorted(int(v) for v in values)
 
 
-def _sorted_unique_ints(values: list[int]) -> list[int]:
-    return sorted(set(int(v) for v in values))
+def _run_method(method: str) -> None:
+    budgets = sorted(BUDGETS)
 
+    np.random.seed(SEED)
+    torch.manual_seed(SEED)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(SEED)
 
-def _clone_dataset(base: Data) -> Data:
-    # Data stores X/Y arrays and a labeled mask; we can safely share X/Y.
-    cloned = Data(base.X_train, base.Y_train, base.X_test, base.Y_test, base.handler)
-    return cloned
+    dataset = get_CIFAR10(CIFAR10_Handler)
+    dataset.initialize_labels(budgets[0])
 
+    labeled = np.where(dataset.labeled_idxs)[0].tolist()
+    unlabeled = np.where(~dataset.labeled_idxs)[0].tolist()
 
-def _set_initial_labels(dataset: Data, labeled_indices: list[int]) -> None:
-    dataset.labeled_idxs[:] = False
-    dataset.labeled_idxs[np.asarray(labeled_indices, dtype=np.int64)] = True
+    net = None
+    if method in STRATEGY_REGISTRY and method != "random":
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        net = get_net("CIFAR10", device)
 
+    current_labeled_count = len(labeled)
 
-def _get_labeled_unlabeled(dataset: Data) -> tuple[list[int], list[int]]:
-    labeled = np.arange(dataset.n_pool)[dataset.labeled_idxs].astype(np.int64).tolist()
-    unlabeled = np.arange(dataset.n_pool)[~dataset.labeled_idxs].astype(np.int64).tolist()
-    return _sorted_unique_ints(labeled), _sorted_unique_ints(unlabeled)
+    for budget in budgets:
+        increment = budget - current_labeled_count
 
+        if increment > 0:
+            if method in STRATEGY_REGISTRY:
+                selected, unlabeled = select_indices(
+                    dataset=dataset,
+                    budget=increment,
+                    strategy=method,
+                    net=net,
+                    train_before_query=(net is not None),
+                    update_dataset_labels=True,
+                )
+                labeled = np.where(dataset.labeled_idxs)[0].tolist()
 
-def _write_split(out_dir: Path, method: str, budget: int, labeled: list[int], unlabeled: list[int]) -> None:
-    out_dir.mkdir(parents=True, exist_ok=True)
-    payload = {
-        "labeled_indices": labeled,
-        "unlabeled_indices": unlabeled,
-    }
-    (out_dir / f"{method}_{budget}.json").write_text(json.dumps(payload), encoding="utf-8")
+            elif method == "typiclust":
+                selected, unlabeled = typiclust(
+                    dataset=dataset,
+                    budget=budget, # we always cluster with "budget" number of clusters, in this implementation, we do not incrementally add clusters, but re-cluster with the new budget at each step
+                    embeddings_npz_path=EMBEDDINGS_PATH,
+                )
+                for idx in selected:
+                    dataset.labeled_idxs[idx] = True
+                labeled = np.where(dataset.labeled_idxs)[0].tolist()
 
+            current_labeled_count = len(labeled)
 
-def _parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(
-        description="Generate labeled/unlabeled index splits for AL methods over multiple budgets."
-    )
-    p.add_argument("--budgets", type=int, nargs="*", default=DEFAULT_BUDGETS)
-    p.add_argument("--methods", type=str, nargs="*", default=DEFAULT_METHODS)
-    p.add_argument(
-        "--output-dir",
-        type=str,
-        default=str(Path("datasets") / "al_splits"),
-    )
-    p.add_argument(
-        "--embeddings-npz",
-        type=str,
-        default=str(Path("datasets") / "cifar10_train_embeddings.npz"),
-        help="Required for typiclust.",
-    )
-    p.add_argument("--train-before-query", action="store_true", default=True)
-    p.add_argument("--no-train-before-query", dest="train_before_query", action="store_false")
-    p.add_argument("--use-cuda", action="store_true", default=True)
-    p.add_argument("--cpu", dest="use_cuda", action="store_false")
-    return p.parse_args()
+        out_path = OUTPUT_DIR / f"{method}_{budget}.json"
+        out_path.write_text(
+            json.dumps({
+                "labeled_indices": _sorted_ints(labeled),
+                "unlabeled_indices": _sorted_ints(unlabeled),
+            }),
+            encoding="utf-8",
+        )
+        print(f"  saved {out_path.name}  ({len(labeled)} labeled)")
 
 
 def main() -> None:
-    args = _parse_args()
-
-    budgets = _sorted_unique_ints(list(args.budgets))
-    if not budgets:
-        raise SystemExit("No budgets provided")
-
-    methods = list(args.methods)
-    valid_methods = set(STRATEGY_REGISTRY.keys()) | {"typiclust"}
-    unknown = [m for m in methods if m not in valid_methods]
-    if unknown:
-        raise SystemExit(f"Unknown methods: {unknown}. Valid: {sorted(valid_methods)}")
-
-    out_dir = Path(args.output_dir)
-
-    # Load CIFAR10 once; clone per method.
-    base_dataset = get_CIFAR10(CIFAR10_Handler)
-
-    init_budget = int(min(budgets))
-    if init_budget < 0 or init_budget > base_dataset.n_pool:
-        raise SystemExit(f"Invalid init budget: {init_budget}")
-
-    rng = np.random.default_rng()
-    init_labeled = rng.choice(base_dataset.n_pool, size=init_budget, replace=False).astype(np.int64).tolist()
-    init_labeled = _sorted_unique_ints(init_labeled)
-
-    device = torch.device("cuda" if (args.use_cuda and torch.cuda.is_available()) else "cpu")
-
-    for method in methods:
-        dataset = _clone_dataset(base_dataset)
-        _set_initial_labels(dataset, init_labeled)
-
-        net = None
-        if method in STRATEGY_REGISTRY and method != "random":
-            net = get_net("CIFAR10", device)
-
-        current_labeled_count = int(dataset.labeled_idxs.sum())
-
-        for budget in budgets:
-            target = int(budget)
-            if target < current_labeled_count:
-                labeled, unlabeled = _get_labeled_unlabeled(dataset)
-                _write_split(out_dir, method, target, labeled, unlabeled)
-                continue
-
-            increment = target - current_labeled_count
-            if increment > 0:
-                if method in STRATEGY_REGISTRY:
-                    _selected, _remaining = select_indices(
-                        dataset=dataset,
-                        budget=increment,
-                        strategy=method,
-                        net=net,
-                        train_before_query=args.train_before_query,
-                        update_dataset_labels=True,
-                    )
-                else:
-                    selected, _remaining = typiclust(
-                        dataset=dataset,
-                        budget=increment,
-                        embeddings_npz_path=str(args.embeddings_npz),
-                        random_state=None,
-                    )
-                    for idx in selected:
-                        dataset.labeled_idxs[int(idx)] = True
-
-            labeled, unlabeled = _get_labeled_unlabeled(dataset)
-            _write_split(out_dir, method, target, labeled, unlabeled)
-            current_labeled_count = len(labeled)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    for method in METHODS:
+        print(f"[{method}]")
+        _run_method(method)
+    print("Done.")
 
 
 if __name__ == "__main__":
