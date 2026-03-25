@@ -23,8 +23,6 @@ from query_strategies import (  # type: ignore  # noqa: E402
     MarginSamplingDropout,
     RandomSampling,
 )
-from .typiclust_precomputed import typiclust_precomputed_select
-from .typiclust_propagation import typiclust_propagate_neighbors
 from .typiclust import typiclust as typiclust_algo
 
 
