@@ -33,10 +33,9 @@ def typiclust_improv(
     # ------------------------------------------------------------------
     # Batch KNN via FAISS GPU — one shot for all points
     # ------------------------------------------------------------------
-    sq_dists, knn_indices = _knn_search(emb, k)          # (n, k) each
+    dists, knn_indices = _knn_search(emb, k)              # (n, k) each, L2
     knn_indices = knn_indices.astype(np.intp)
-    mean_dists = np.sqrt(np.maximum(sq_dists, 0.0)).mean(axis=1)
-    typicality = 1.0 / (mean_dists + 1e-9)               # (n,)
+    typicality = 1.0 / (dists.mean(axis=1) + 1e-9)       # (n,)
 
     # ------------------------------------------------------------------
     # Running stats for O(1) std:  var = E[T²] - E[T]²
