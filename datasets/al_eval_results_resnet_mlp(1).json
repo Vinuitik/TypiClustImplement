@@ -603,5 +603,115 @@
     "method": "random",
     "budget": 60,
     "test_acc": 0.5128
+  },
+  {
+    "method": "typiclust",
+    "budget": 10,
+    "test_acc": 0.2822
+  },
+  {
+    "method": "typiclust",
+    "budget": 100,
+    "test_acc": 0.6038
+  },
+  {
+    "method": "typiclust",
+    "budget": 150,
+    "test_acc": 0.646
+  },
+  {
+    "method": "typiclust",
+    "budget": 20,
+    "test_acc": 0.4113
+  },
+  {
+    "method": "typiclust",
+    "budget": 200,
+    "test_acc": 0.6271
+  },
+  {
+    "method": "typiclust",
+    "budget": 250,
+    "test_acc": 0.6699
+  },
+  {
+    "method": "typiclust",
+    "budget": 30,
+    "test_acc": 0.4522
+  },
+  {
+    "method": "typiclust",
+    "budget": 300,
+    "test_acc": 0.6803
+  },
+  {
+    "method": "typiclust",
+    "budget": 40,
+    "test_acc": 0.5344
+  },
+  {
+    "method": "typiclust",
+    "budget": 50,
+    "test_acc": 0.544
+  },
+  {
+    "method": "typiclust",
+    "budget": 60,
+    "test_acc": 0.5517
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 10,
+    "test_acc": 0.1
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 100,
+    "test_acc": 0.1632
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 150,
+    "test_acc": 0.2565
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 20,
+    "test_acc": 0.1
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 200,
+    "test_acc": 0.3028
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 250,
+    "test_acc": 0.3757
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 30,
+    "test_acc": 0.1
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 300,
+    "test_acc": 0.4054
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 40,
+    "test_acc": 0.1002
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 50,
+    "test_acc": 0.1004
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 60,
+    "test_acc": 0.1003
   }
 ]

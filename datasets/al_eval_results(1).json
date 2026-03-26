@@ -533,5 +533,100 @@
     "method": "random",
     "budget": 60,
     "test_acc": 0.2932942708333333
+  },
+  {
+    "method": "typiclust",
+    "budget": 10,
+    "test_acc": 0.3122
+  },
+  {
+    "method": "typiclust",
+    "budget": 100,
+    "test_acc": 0.5607
+  },
+  {
+    "method": "typiclust",
+    "budget": 150,
+    "test_acc": 0.5885
+  },
+  {
+    "method": "typiclust",
+    "budget": 20,
+    "test_acc": 0.446
+  },
+  {
+    "method": "typiclust",
+    "budget": 200,
+    "test_acc": 0.5955
+  },
+  {
+    "method": "typiclust",
+    "budget": 250,
+    "test_acc": 0.6021
+  },
+  {
+    "method": "typiclust",
+    "budget": 30,
+    "test_acc": 0.4845
+  },
+  {
+    "method": "typiclust",
+    "budget": 300,
+    "test_acc": 0.5905
+  },
+  {
+    "method": "typiclust",
+    "budget": 40,
+    "test_acc": 0.5482
+  },
+  {
+    "method": "typiclust",
+    "budget": 50,
+    "test_acc": 0.5143
+  },
+  {
+    "method": "typiclust",
+    "budget": 60,
+    "test_acc": 0.5281
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 100,
+    "test_acc": 0.2165
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 150,
+    "test_acc": 0.3534
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 200,
+    "test_acc": 0.4515
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 250,
+    "test_acc": 0.4731
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 300,
+    "test_acc": 0.467
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 40,
+    "test_acc": 0.1307
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 50,
+    "test_acc": 0.1234
+  },
+  {
+    "method": "typiclust_improv",
+    "budget": 60,
+    "test_acc": 0.1538
   }
 ]
