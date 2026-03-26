@@ -1,0 +1,607 @@
+[
+  {
+    "method": "adversarial_bim",
+    "budget": 10,
+    "test_acc": 0.2297
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 100,
+    "test_acc": 0.473
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 150,
+    "test_acc": 0.5201
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 20,
+    "test_acc": 0.3039
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 200,
+    "test_acc": 0.5574
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 250,
+    "test_acc": 0.6004
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 30,
+    "test_acc": 0.3274
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 300,
+    "test_acc": 0.6167
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 40,
+    "test_acc": 0.353
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 50,
+    "test_acc": 0.3503
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 60,
+    "test_acc": 0.3857
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 10,
+    "test_acc": 0.3527
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 100,
+    "test_acc": 0.4318
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 150,
+    "test_acc": 0.4576
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 20,
+    "test_acc": 0.3691
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 200,
+    "test_acc": 0.4885
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 250,
+    "test_acc": 0.5393
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 30,
+    "test_acc": 0.3113
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 300,
+    "test_acc": 0.5194
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 40,
+    "test_acc": 0.3691
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 50,
+    "test_acc": 0.4331
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 60,
+    "test_acc": 0.4291
+  },
+  {
+    "method": "entropy",
+    "budget": 10,
+    "test_acc": 0.3495
+  },
+  {
+    "method": "entropy",
+    "budget": 100,
+    "test_acc": 0.3238
+  },
+  {
+    "method": "entropy",
+    "budget": 150,
+    "test_acc": 0.374
+  },
+  {
+    "method": "entropy",
+    "budget": 20,
+    "test_acc": 0.2174
+  },
+  {
+    "method": "entropy",
+    "budget": 200,
+    "test_acc": 0.4205
+  },
+  {
+    "method": "entropy",
+    "budget": 250,
+    "test_acc": 0.5002
+  },
+  {
+    "method": "entropy",
+    "budget": 30,
+    "test_acc": 0.2533
+  },
+  {
+    "method": "entropy",
+    "budget": 300,
+    "test_acc": 0.5532
+  },
+  {
+    "method": "entropy",
+    "budget": 40,
+    "test_acc": 0.2825
+  },
+  {
+    "method": "entropy",
+    "budget": 50,
+    "test_acc": 0.2681
+  },
+  {
+    "method": "entropy",
+    "budget": 60,
+    "test_acc": 0.3002
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 10,
+    "test_acc": 0.3125
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 100,
+    "test_acc": 0.3549
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 150,
+    "test_acc": 0.4727
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 20,
+    "test_acc": 0.2488
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 200,
+    "test_acc": 0.4777
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 250,
+    "test_acc": 0.6033
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 30,
+    "test_acc": 0.2718
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 300,
+    "test_acc": 0.6289
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 40,
+    "test_acc": 0.3047
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 50,
+    "test_acc": 0.2969
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 60,
+    "test_acc": 0.327
+  },
+  {
+    "method": "kcenter",
+    "budget": 10,
+    "test_acc": 0.3652
+  },
+  {
+    "method": "kcenter",
+    "budget": 100,
+    "test_acc": 0.4609
+  },
+  {
+    "method": "kcenter",
+    "budget": 150,
+    "test_acc": 0.4825
+  },
+  {
+    "method": "kcenter",
+    "budget": 20,
+    "test_acc": 0.3417
+  },
+  {
+    "method": "kcenter",
+    "budget": 200,
+    "test_acc": 0.474
+  },
+  {
+    "method": "kcenter",
+    "budget": 250,
+    "test_acc": 0.5858
+  },
+  {
+    "method": "kcenter",
+    "budget": 30,
+    "test_acc": 0.3866
+  },
+  {
+    "method": "kcenter",
+    "budget": 300,
+    "test_acc": 0.5914
+  },
+  {
+    "method": "kcenter",
+    "budget": 40,
+    "test_acc": 0.3726
+  },
+  {
+    "method": "kcenter",
+    "budget": 50,
+    "test_acc": 0.3543
+  },
+  {
+    "method": "kcenter",
+    "budget": 60,
+    "test_acc": 0.4466
+  },
+  {
+    "method": "kmeans",
+    "budget": 10,
+    "test_acc": 0.3202
+  },
+  {
+    "method": "kmeans",
+    "budget": 100,
+    "test_acc": 0.5594
+  },
+  {
+    "method": "kmeans",
+    "budget": 150,
+    "test_acc": 0.5927
+  },
+  {
+    "method": "kmeans",
+    "budget": 20,
+    "test_acc": 0.3982
+  },
+  {
+    "method": "kmeans",
+    "budget": 200,
+    "test_acc": 0.586
+  },
+  {
+    "method": "kmeans",
+    "budget": 250,
+    "test_acc": 0.6454
+  },
+  {
+    "method": "kmeans",
+    "budget": 30,
+    "test_acc": 0.398
+  },
+  {
+    "method": "kmeans",
+    "budget": 300,
+    "test_acc": 0.6514
+  },
+  {
+    "method": "kmeans",
+    "budget": 40,
+    "test_acc": 0.4275
+  },
+  {
+    "method": "kmeans",
+    "budget": 50,
+    "test_acc": 0.4546
+  },
+  {
+    "method": "kmeans",
+    "budget": 60,
+    "test_acc": 0.4605
+  },
+  {
+    "method": "least_confidence",
+    "budget": 10,
+    "test_acc": 0.3548
+  },
+  {
+    "method": "least_confidence",
+    "budget": 100,
+    "test_acc": 0.3625
+  },
+  {
+    "method": "least_confidence",
+    "budget": 150,
+    "test_acc": 0.4052
+  },
+  {
+    "method": "least_confidence",
+    "budget": 20,
+    "test_acc": 0.301
+  },
+  {
+    "method": "least_confidence",
+    "budget": 200,
+    "test_acc": 0.4128
+  },
+  {
+    "method": "least_confidence",
+    "budget": 250,
+    "test_acc": 0.5858
+  },
+  {
+    "method": "least_confidence",
+    "budget": 30,
+    "test_acc": 0.3679
+  },
+  {
+    "method": "least_confidence",
+    "budget": 300,
+    "test_acc": 0.5776
+  },
+  {
+    "method": "least_confidence",
+    "budget": 40,
+    "test_acc": 0.3729
+  },
+  {
+    "method": "least_confidence",
+    "budget": 50,
+    "test_acc": 0.3544
+  },
+  {
+    "method": "least_confidence",
+    "budget": 60,
+    "test_acc": 0.3812
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 10,
+    "test_acc": 0.3662
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 100,
+    "test_acc": 0.3563
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 150,
+    "test_acc": 0.4597
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 20,
+    "test_acc": 0.3175
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 200,
+    "test_acc": 0.5527
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 250,
+    "test_acc": 0.6117
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 30,
+    "test_acc": 0.3288
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 300,
+    "test_acc": 0.6165
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 40,
+    "test_acc": 0.3327
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 50,
+    "test_acc": 0.3716
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 60,
+    "test_acc": 0.3597
+  },
+  {
+    "method": "margin",
+    "budget": 10,
+    "test_acc": 0.3547
+  },
+  {
+    "method": "margin",
+    "budget": 100,
+    "test_acc": 0.5662
+  },
+  {
+    "method": "margin",
+    "budget": 150,
+    "test_acc": 0.5725
+  },
+  {
+    "method": "margin",
+    "budget": 20,
+    "test_acc": 0.3345
+  },
+  {
+    "method": "margin",
+    "budget": 200,
+    "test_acc": 0.5971
+  },
+  {
+    "method": "margin",
+    "budget": 250,
+    "test_acc": 0.6445
+  },
+  {
+    "method": "margin",
+    "budget": 30,
+    "test_acc": 0.4108
+  },
+  {
+    "method": "margin",
+    "budget": 300,
+    "test_acc": 0.6415
+  },
+  {
+    "method": "margin",
+    "budget": 40,
+    "test_acc": 0.4375
+  },
+  {
+    "method": "margin",
+    "budget": 50,
+    "test_acc": 0.4468
+  },
+  {
+    "method": "margin",
+    "budget": 60,
+    "test_acc": 0.4506
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 10,
+    "test_acc": 0.3651
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 100,
+    "test_acc": 0.5404
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 150,
+    "test_acc": 0.6108
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 20,
+    "test_acc": 0.2385
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 200,
+    "test_acc": 0.5993
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 250,
+    "test_acc": 0.6446
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 30,
+    "test_acc": 0.3661
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 300,
+    "test_acc": 0.6734
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 40,
+    "test_acc": 0.3828
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 50,
+    "test_acc": 0.4441
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 60,
+    "test_acc": 0.4836
+  },
+  {
+    "method": "random",
+    "budget": 10,
+    "test_acc": 0.3714
+  },
+  {
+    "method": "random",
+    "budget": 100,
+    "test_acc": 0.5574
+  },
+  {
+    "method": "random",
+    "budget": 150,
+    "test_acc": 0.583
+  },
+  {
+    "method": "random",
+    "budget": 20,
+    "test_acc": 0.3443
+  },
+  {
+    "method": "random",
+    "budget": 200,
+    "test_acc": 0.5662
+  },
+  {
+    "method": "random",
+    "budget": 250,
+    "test_acc": 0.6501
+  },
+  {
+    "method": "random",
+    "budget": 30,
+    "test_acc": 0.4714
+  },
+  {
+    "method": "random",
+    "budget": 300,
+    "test_acc": 0.6566
+  },
+  {
+    "method": "random",
+    "budget": 40,
+    "test_acc": 0.4852
+  },
+  {
+    "method": "random",
+    "budget": 50,
+    "test_acc": 0.4813
+  },
+  {
+    "method": "random",
+    "budget": 60,
+    "test_acc": 0.5128
+  }
+]

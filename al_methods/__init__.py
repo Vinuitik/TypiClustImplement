@@ -15,6 +15,7 @@ from .deepal_wrappers import (
     select_indices,
     typiclust
 )
+from .typiclust_improv import typiclust_improv
 
 __all__ = [
     "STRATEGY_REGISTRY",
@@ -32,4 +33,5 @@ __all__ = [
     "adversarial_bim",
     "adversarial_deepfool",
     "typiclust",
+    "typiclust_improv",
 ]

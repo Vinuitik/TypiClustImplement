@@ -1,0 +1,537 @@
+[
+  {
+    "method": "adversarial_bim",
+    "budget": 100,
+    "test_acc": 0.3293185763888889
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 150,
+    "test_acc": 0.3866102430555556
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 20,
+    "test_acc": 0.17686631944444445
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 200,
+    "test_acc": 0.3938802083333333
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 250,
+    "test_acc": 0.4442274305555556
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 30,
+    "test_acc": 0.2087673611111111
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 300,
+    "test_acc": 0.4460720486111111
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 40,
+    "test_acc": 0.2153862847222222
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 50,
+    "test_acc": 0.2097439236111111
+  },
+  {
+    "method": "adversarial_bim",
+    "budget": 60,
+    "test_acc": 0.2689887152777778
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 100,
+    "test_acc": 0.2218967013888889
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 150,
+    "test_acc": 0.3963758680555556
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 20,
+    "test_acc": 0.11610243055555555
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 200,
+    "test_acc": 0.3670789930555556
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 250,
+    "test_acc": 0.3798828125
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 30,
+    "test_acc": 0.09722222222222222
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 300,
+    "test_acc": 0.4640842013888889
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 40,
+    "test_acc": 0.2009548611111111
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 50,
+    "test_acc": 0.1877170138888889
+  },
+  {
+    "method": "bald_dropout",
+    "budget": 60,
+    "test_acc": 0.1870659722222222
+  },
+  {
+    "method": "entropy",
+    "budget": 100,
+    "test_acc": 0.439453125
+  },
+  {
+    "method": "entropy",
+    "budget": 150,
+    "test_acc": 0.4836154513888889
+  },
+  {
+    "method": "entropy",
+    "budget": 20,
+    "test_acc": 0.1144748263888889
+  },
+  {
+    "method": "entropy",
+    "budget": 200,
+    "test_acc": 0.4855685763888889
+  },
+  {
+    "method": "entropy",
+    "budget": 250,
+    "test_acc": 0.4756944444444444
+  },
+  {
+    "method": "entropy",
+    "budget": 30,
+    "test_acc": 0.1694878472222222
+  },
+  {
+    "method": "entropy",
+    "budget": 300,
+    "test_acc": 0.4847005208333333
+  },
+  {
+    "method": "entropy",
+    "budget": 40,
+    "test_acc": 0.1742621527777778
+  },
+  {
+    "method": "entropy",
+    "budget": 50,
+    "test_acc": 0.15321180555555555
+  },
+  {
+    "method": "entropy",
+    "budget": 60,
+    "test_acc": 0.2887369791666667
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 100,
+    "test_acc": 0.4139539930555556
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 150,
+    "test_acc": 0.4378255208333333
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 200,
+    "test_acc": 0.4565972222222222
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 250,
+    "test_acc": 0.4679904513888889
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 30,
+    "test_acc": 0.19618055555555555
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 300,
+    "test_acc": 0.4823133680555556
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 40,
+    "test_acc": 0.2398003472222222
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 50,
+    "test_acc": 0.3142361111111111
+  },
+  {
+    "method": "entropy_dropout",
+    "budget": 60,
+    "test_acc": 0.3608940972222222
+  },
+  {
+    "method": "kcenter",
+    "budget": 100,
+    "test_acc": 0.3661024305555556
+  },
+  {
+    "method": "kcenter",
+    "budget": 150,
+    "test_acc": 0.3824869791666667
+  },
+  {
+    "method": "kcenter",
+    "budget": 20,
+    "test_acc": 0.1042751736111111
+  },
+  {
+    "method": "kcenter",
+    "budget": 200,
+    "test_acc": 0.4065755208333333
+  },
+  {
+    "method": "kcenter",
+    "budget": 250,
+    "test_acc": 0.4350043402777778
+  },
+  {
+    "method": "kcenter",
+    "budget": 30,
+    "test_acc": 0.20030381944444445
+  },
+  {
+    "method": "kcenter",
+    "budget": 300,
+    "test_acc": 0.474609375
+  },
+  {
+    "method": "kcenter",
+    "budget": 40,
+    "test_acc": 0.2608506944444444
+  },
+  {
+    "method": "kcenter",
+    "budget": 50,
+    "test_acc": 0.3107638888888889
+  },
+  {
+    "method": "kcenter",
+    "budget": 60,
+    "test_acc": 0.3385416666666667
+  },
+  {
+    "method": "kmeans",
+    "budget": 100,
+    "test_acc": 0.4191623263888889
+  },
+  {
+    "method": "kmeans",
+    "budget": 150,
+    "test_acc": 0.4391276041666667
+  },
+  {
+    "method": "kmeans",
+    "budget": 200,
+    "test_acc": 0.4444444444444444
+  },
+  {
+    "method": "kmeans",
+    "budget": 250,
+    "test_acc": 0.4731987847222222
+  },
+  {
+    "method": "kmeans",
+    "budget": 30,
+    "test_acc": 0.2503255208333333
+  },
+  {
+    "method": "kmeans",
+    "budget": 300,
+    "test_acc": 0.4651692708333333
+  },
+  {
+    "method": "kmeans",
+    "budget": 40,
+    "test_acc": 0.2961154513888889
+  },
+  {
+    "method": "kmeans",
+    "budget": 50,
+    "test_acc": 0.2886284722222222
+  },
+  {
+    "method": "kmeans",
+    "budget": 60,
+    "test_acc": 0.2833116319444444
+  },
+  {
+    "method": "least_confidence",
+    "budget": 100,
+    "test_acc": 0.3836805555555556
+  },
+  {
+    "method": "least_confidence",
+    "budget": 150,
+    "test_acc": 0.4623480902777778
+  },
+  {
+    "method": "least_confidence",
+    "budget": 20,
+    "test_acc": 0.1496310763888889
+  },
+  {
+    "method": "least_confidence",
+    "budget": 200,
+    "test_acc": 0.484375
+  },
+  {
+    "method": "least_confidence",
+    "budget": 250,
+    "test_acc": 0.498046875
+  },
+  {
+    "method": "least_confidence",
+    "budget": 30,
+    "test_acc": 0.20985243055555555
+  },
+  {
+    "method": "least_confidence",
+    "budget": 300,
+    "test_acc": 0.5168185763888888
+  },
+  {
+    "method": "least_confidence",
+    "budget": 40,
+    "test_acc": 0.2509765625
+  },
+  {
+    "method": "least_confidence",
+    "budget": 50,
+    "test_acc": 0.2872178819444444
+  },
+  {
+    "method": "least_confidence",
+    "budget": 60,
+    "test_acc": 0.3204210069444444
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 100,
+    "test_acc": 0.3790147569444444
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 150,
+    "test_acc": 0.4041883680555556
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 20,
+    "test_acc": 0.09505208333333333
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 200,
+    "test_acc": 0.4212239583333333
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 250,
+    "test_acc": 0.3764105902777778
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 30,
+    "test_acc": 0.1047092013888889
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 300,
+    "test_acc": 0.4133029513888889
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 40,
+    "test_acc": 0.16536458333333334
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 50,
+    "test_acc": 0.2072482638888889
+  },
+  {
+    "method": "least_confidence_dropout",
+    "budget": 60,
+    "test_acc": 0.19932725694444445
+  },
+  {
+    "method": "margin",
+    "budget": 100,
+    "test_acc": 0.4097222222222222
+  },
+  {
+    "method": "margin",
+    "budget": 150,
+    "test_acc": 0.4619140625
+  },
+  {
+    "method": "margin",
+    "budget": 20,
+    "test_acc": 0.1955295138888889
+  },
+  {
+    "method": "margin",
+    "budget": 200,
+    "test_acc": 0.490234375
+  },
+  {
+    "method": "margin",
+    "budget": 250,
+    "test_acc": 0.4789496527777778
+  },
+  {
+    "method": "margin",
+    "budget": 30,
+    "test_acc": 0.248046875
+  },
+  {
+    "method": "margin",
+    "budget": 300,
+    "test_acc": 0.4760199652777778
+  },
+  {
+    "method": "margin",
+    "budget": 40,
+    "test_acc": 0.2506510416666667
+  },
+  {
+    "method": "margin",
+    "budget": 50,
+    "test_acc": 0.3440755208333333
+  },
+  {
+    "method": "margin",
+    "budget": 60,
+    "test_acc": 0.3317057291666667
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 100,
+    "test_acc": 0.4024522569444444
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 150,
+    "test_acc": 0.4595269097222222
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 200,
+    "test_acc": 0.4717881944444444
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 250,
+    "test_acc": 0.4721137152777778
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 30,
+    "test_acc": 0.18880208333333334
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 300,
+    "test_acc": 0.4857855902777778
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 40,
+    "test_acc": 0.2688802083333333
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 50,
+    "test_acc": 0.3165147569444444
+  },
+  {
+    "method": "margin_dropout",
+    "budget": 60,
+    "test_acc": 0.3165147569444444
+  },
+  {
+    "method": "random",
+    "budget": 100,
+    "test_acc": 0.4075520833333333
+  },
+  {
+    "method": "random",
+    "budget": 150,
+    "test_acc": 0.4610460069444444
+  },
+  {
+    "method": "random",
+    "budget": 20,
+    "test_acc": 0.08452690972222222
+  },
+  {
+    "method": "random",
+    "budget": 200,
+    "test_acc": 0.4883897569444444
+  },
+  {
+    "method": "random",
+    "budget": 250,
+    "test_acc": 0.50390625
+  },
+  {
+    "method": "random",
+    "budget": 30,
+    "test_acc": 0.1506076388888889
+  },
+  {
+    "method": "random",
+    "budget": 300,
+    "test_acc": 0.5266927083333334
+  },
+  {
+    "method": "random",
+    "budget": 40,
+    "test_acc": 0.1511501736111111
+  },
+  {
+    "method": "random",
+    "budget": 50,
+    "test_acc": 0.18359375
+  },
+  {
+    "method": "random",
+    "budget": 60,
+    "test_acc": 0.2932942708333333
+  }
+]

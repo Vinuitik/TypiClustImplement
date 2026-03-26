@@ -51,8 +51,12 @@ def _run_method(method: str) -> None:
     dataset = get_CIFAR10(CIFAR10_Handler)
 
     if method == "typiclust":
-        # typiclust uses embeddings only — can select from a fully unlabeled pool
-        pass
+        # Restrict pool to match embeddings size (embeddings may cover fewer samples than dataset)
+        n_emb = int(np.load(EMBEDDINGS_PATH)["embeddings"].shape[0])
+        dataset.X_train = dataset.X_train[:n_emb]
+        dataset.Y_train = dataset.Y_train[:n_emb]
+        dataset.n_pool = n_emb
+        dataset.labeled_idxs = dataset.labeled_idxs[:n_emb]
     else:
         # Stratified init: 1 sample per class — guarantees all classes present
         # (DeepAL strategies need a trainable labeled set before the first query)
