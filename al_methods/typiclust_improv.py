@@ -1,5 +1,5 @@
 import numpy as np
-from .typiclust import _load_embeddings
+from .typiclust import _load_embeddings, _knn_search
 
 
 def typiclust_improv(
@@ -10,14 +10,14 @@ def typiclust_improv(
     random_state: int | None = 42,
 ) -> tuple[list[int], list[int]]:
     """
-    TypiClust variant with diversity-penalised greedy selection.
+    TypiClust variant with diversity-penalised greedy selection (FAISS GPU-accelerated).
 
     Steps:
-      1. Precompute typicality = 1 / mean_knn_dist for every unlabeled point.
+      1. Batch KNN via FAISS GPU → typicality = 1 / mean_knn_dist for every point.
       2. Maintain running sum and sum-of-squares for O(1) std computation.
       3. Greedily pick the most typical point, then:
          a. Zero its typicality (prevents re-selection).
-         b. Subtract 0.5 * current_std from each of its k nearest neighbors.
+         b. Subtract 0.2 * current_std from each of its k nearest neighbors.
       4. Repeat until `budget` points are selected.
     """
     unlabeled_data, _ = dataset.get_unlabeled_data()
@@ -27,22 +27,16 @@ def typiclust_improv(
     if budget >= len(unlabeled_idxs):
         return unlabeled_idxs, []
 
-    unlabeled_embeddings = embeddings[unlabeled_idxs]
-    n_samples = unlabeled_embeddings.shape[0]
-    actual_k = min(k, n_samples - 1)
+    emb = np.ascontiguousarray(embeddings[unlabeled_idxs], dtype=np.float32)
+    n_samples = emb.shape[0]
 
     # ------------------------------------------------------------------
-    # Precompute typicality and KNN indices for every point
+    # Batch KNN via FAISS GPU — one shot for all points
     # ------------------------------------------------------------------
-    typicality = np.zeros(n_samples)
-    knn_indices = np.empty((n_samples, actual_k), dtype=np.intp)
-
-    for i in range(n_samples):
-        dists = np.linalg.norm(unlabeled_embeddings - unlabeled_embeddings[i], axis=1)
-        dists[i] = np.inf  # exclude self
-        nn = np.argpartition(dists, actual_k - 1)[:actual_k]
-        knn_indices[i] = nn
-        typicality[i] = 1.0 / (np.mean(dists[nn]) + 1e-9)
+    sq_dists, knn_indices = _knn_search(emb, k)          # (n, k) each
+    knn_indices = knn_indices.astype(np.intp)
+    mean_dists = np.sqrt(np.maximum(sq_dists, 0.0)).mean(axis=1)
+    typicality = 1.0 / (mean_dists + 1e-9)               # (n,)
 
     # ------------------------------------------------------------------
     # Running stats for O(1) std:  var = E[T²] - E[T]²
@@ -71,7 +65,7 @@ def typiclust_improv(
         typicality[best] = 0.0
 
         # Penalise neighbors
-        penalty = 0.5 * current_std()
+        penalty = 0.2 * current_std()
         for nb in knn_indices[best]:
             t_old = typicality[nb]
             t_new = max(t_old - penalty, 0.0)
