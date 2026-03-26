@@ -64,7 +64,7 @@ def typiclust_improv(
         typicality[best] = 0.0
 
         # Penalise neighbors
-        penalty = 0.2 * current_std()
+        penalty = 0.05 * current_std()
         for nb in knn_indices[best]:
             t_old = typicality[nb]
             t_new = max(t_old - penalty, 0.0)
