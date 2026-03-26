@@ -1,0 +1,57 @@
+[
+  {
+    "method": "typiclust",
+    "budget": 10,
+    "test_acc": 0.2905
+  },
+  {
+    "method": "typiclust",
+    "budget": 100,
+    "test_acc": 0.6068
+  },
+  {
+    "method": "typiclust",
+    "budget": 150,
+    "test_acc": 0.6321
+  },
+  {
+    "method": "typiclust",
+    "budget": 20,
+    "test_acc": 0.3991
+  },
+  {
+    "method": "typiclust",
+    "budget": 200,
+    "test_acc": 0.5885
+  },
+  {
+    "method": "typiclust",
+    "budget": 250,
+    "test_acc": 0.6727
+  },
+  {
+    "method": "typiclust",
+    "budget": 30,
+    "test_acc": 0.4791
+  },
+  {
+    "method": "typiclust",
+    "budget": 300,
+    "test_acc": 0.6816
+  },
+  {
+    "method": "typiclust",
+    "budget": 40,
+    "test_acc": 0.526
+  },
+  {
+    "method": "typiclust",
+    "budget": 50,
+    "test_acc": 0.5275
+  },
+  {
+    "method": "typiclust",
+    "budget": 60,
+    "test_acc": 0.5416
+  }
+]
